@@ -13,25 +13,31 @@ const logging = async (stack = "backend", level, package, message) => {
         package: package,
         message: message
     }
-    // console.log(TOKEN);
-    const response = await fetch(LOG_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${TOKEN}`
-        },
-        body: JSON.stringify(BODY)
-    })
+    try {
+        const response = await fetch(LOG_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${TOKEN}`
+            },
+            body: JSON.stringify(BODY)
+        });
+
+        const responseBody = await response.text(); 
+        const data = responseBody + "\n";
+
+        // fs.appendFile('logs.txt', data, (err) => {
+        //     if (err) {
+        //         console.error("error in store txt file: ", err.message);
+        //     }
+        // });
+        console.log(response);
+
+    } catch (err) {
+        console.error("Fetch error:", err.message);
+    }
 
     
-    console.log(response);
-    // for (check successfully responce 
-    const data = response + "\n";
-    fs.appendFile('logs.txt', data, (err) => {
-        if(err){
-            console.error("error in store txt file: ", err.message);
-        }
-    })
 }
 
 module.exports = { logging };
