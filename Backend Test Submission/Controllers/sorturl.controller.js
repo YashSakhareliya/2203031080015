@@ -2,7 +2,6 @@ const fs = require('fs');
 const fsPromises = require('fs/promises');
 const path = require('path');
 
-// Helper to get the path to the urls.json file
 const urlsFilePath = path.join(__dirname, '../Urls/urls.json');
 
 // Read URLs from file

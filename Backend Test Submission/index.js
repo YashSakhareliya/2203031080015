@@ -10,7 +10,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const shorturlRoutes = require("./routes/shorturl.route");
+const shorturlRoutes = require("./Routes/sorturl.route.js");
 
 app.use("/shorturls", shorturlRoutes);
 
